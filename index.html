@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semangat Anita!</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd6e7, #d8eaff);
+  overflow: hidden;
+}
+
+.kartu {
+  width: 90%;
+  max-width: 400px;
+  padding: 30px 22px;
+  background: white;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 10px 30px #0002;
+  animation: muncul 1s ease;
+  z-index: 2;
+}
+
+h1 {
+  color: #e75480;
+}
+
+.boneka {
+  font-size: 65px;
+  margin: 15px;
+  animation: goyang 2s infinite;
+}
+
+p {
+  color: #555;
+  line-height: 1.6;
+}
+
+button {
+  background: #e75480;
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #c93668;
+  transform: scale(1.07);
+}
+
+#pesan {
+  display: none;
+  margin-top: 20px;
+  padding: 18px;
+  background: #fff0f5;
+  border-radius: 15px;
+  color: #9b3159;
+  line-height: 1.7;
+}
+
+.bunga {
+  position: fixed;
+  top: -30px;
+  font-size: 24px;
+  animation: jatuh 6s linear infinite;
+  z-index: 1;
+}
+
+@keyframes muncul {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes goyang {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+@keyframes jatuh {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="kartu">
+  <h1>Hai Anita! 👋🌷</h1>
+
+  <div class="boneka">🐻🌻☕</div>
+
+  <h3>Ada pesan buat kamu!</h3>
+
+  <p>
+    Gimana hari ini?<br>
+    Masih kuat menghadapi drama pekerjaan? 😂
+  </p>
+
+  <button onclick="bukaPesan()">
+    Buka Kejutan 🎁
+  </button>
+
+  <div id="pesan">
+    <strong>Hai Anita! ❤️</strong>
+    <br><br>
+    Tetap semangat! Kamu lebih kuat dari yang kamu kira. 🌻
+    <br><br>
+    Jangan terlalu banyak pikiran,
+    jangan lupa makan,
+    dan jangan lupa bahagia!
+    <br><br>
+    Semangat kerjanya, Anita!
+    Jangan kalah sama deadline! 🤣
+    <br><br>
+    Salam dari teman kerjamu! ✨
+  </div>
+</div>
+
+<script>
+function bukaPesan() {
+  document.getElementById("pesan").style.display = "block";
+  document.querySelector("button").innerText = "Kejutan terbuka! 🎉";
+}
+
+const bunga = ["🌸", "🌷", "🌻", "✨"];
+
+setInterval(() => {
+  const elemen = document.createElement("div");
+  elemen.className = "bunga";
+  elemen.innerText = bunga[Math.floor(Math.random() * bunga.length)];
+  elemen.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(elemen);
+
+  setTimeout(() => elemen.remove(), 6000);
+}, 700);
+</script>
+
+</body>
+</html>
