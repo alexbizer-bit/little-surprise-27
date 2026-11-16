@@ -74,8 +74,8 @@ footer { position:relative;z-index:1;text-align:center;color:#eafaff;font-size:1
     <div class="mascot">🐙</div>
     <h2>Pertanyaan penting!</h2>
     <p>Kalau pekerjaan mulai bikin kepala penuh, apa strategi terbaik?</p>
-    <button onclick="answer(true)">Atur napas, lalu cicil satu-satu 😌</button>
-    <button class="secondary" onclick="answer(false)">Menyamar jadi ubur-ubur 🤣</button>
+    <button onclick="answer(true)">Atur napas, lalu ngopi? 😌</button>
+    <button class="secondary" onclick="answer(false)">apa libur 3x 🤣</button>
     <p class="note" id="answerText" aria-live="polite"></p>
     <button id="nextBtn" class="hidden" onclick="showPage('finish')">Lihat pesan terakhir ✨</button>
   </section>
@@ -84,8 +84,8 @@ footer { position:relative;z-index:1;text-align:center;color:#eafaff;font-size:1
     <div class="mascot">🪼🌻</div>
     <h2>Pesan dari laut terdalam</h2>
     <p id="finalMessage">Semangat terus,! Kamu sudah melakukan yang terbaik hari ini.</p>
-    <p>Jangan lupa makan, minum, istirahat, dan tetap jadi sumber energi positif di tempat kerja.</p>
-    <p><strong>Tetap semangat, ya! 🐬</strong></p>
+    <p>Jangan lupa makan, minum, istirahat, dan tetap jadi sumber energi positif di tempat kerja😬.</p>
+    <p><strong>Tetap semangat, OY ! 🐬</strong></p>
     <button onclick="replay()">Ulangi dari awal ↻</button>
   </section>
 
@@ -113,8 +113,8 @@ function showPage(id) {
 function answer(correct) {
   const msg = document.getElementById("answerText");
   msg.textContent = correct
-    ? "Betul! Strategi kapten yang bijak. ⭐"
-    : "Wkwkwk, boleh juga… tapi setelah tugasnya dicicil ya! 😂";
+    ? "Wkwkwk,Boleh juga. ⭐"
+    : "Libur 3x,tapi tujuanya tetap ngopi! 😂";
   document.getElementById("nextBtn").classList.remove("hidden");
 }
 function replay() {
