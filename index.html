@@ -58,7 +58,7 @@ footer { position:relative;z-index:1;text-align:center;color:#eafaff;font-size:1
     <div class="mascot">🐬</div>
     <h1>Psst... jangan buru-buru pergi!</h1>
     <p>Ada pesan kecil dari dasar laut. . 😂</p>
-    <button onclick="showPage('message')">Oke, aku penasaran 👀</button>
+    <button onclick="mulaiKejutan()">Oke, aku penasaran 👀</button>
   </section>
 
   <section class="card hidden" id="message">
@@ -95,15 +95,15 @@ footer { position:relative;z-index:1;text-align:center;color:#eafaff;font-size:1
   <p>Putar musiknya sambil menikmati kejutan ini.</p>
 
   <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;">
-    <iframe
+    
       <iframe
-  src="https://www.youtube-nocookie.com/embed/tGv7CUutzqU?start=92"
+  id="musik"
+  src="https://www.youtube-nocookie.com/embed/tGv7CUutzqU?start=92&enablejsapi=1"
   title="The 1975 - About You"
   style="position:absolute;width:100%;height:100%;border:0;top:0;left:0;"
   referrerpolicy="strict-origin-when-cross-origin"
-  allow="accelerometer; autoplay; encrypted-media; picture-in-picture; web-share"
+  allow="autoplay; encrypted-media; picture-in-picture"
   allowfullscreen>
-</iframe>
     </iframe>
   </div>
 </section>
@@ -140,8 +140,15 @@ for(let i=0;i<22;i++){
 ["🐠","🐟","🪼","🐡"].forEach((emoji,i)=>{
   const f=document.createElement("span");f.className="fish";f.textContent=emoji;
   f.style.top=(12+i*19)+"%";f.style.animationDelay=(-i*4)+"s";
-  ocean.appendChild(f);
+    ocean.appendChild(f);
 });
+
+function mulaiKejutan() {
+  showPage('message');
+
+  const musik = document.getElementById('musik');
+  musik.src = "https://www.youtube-nocookie.com/embed/tGv7CUutzqU?start=92&autoplay=1";
+}
 </script>
 </body>
 </html>
