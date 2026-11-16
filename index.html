@@ -1,160 +1,127 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<h1>Hai! 👋🌷</h1>
-
+<meta name="theme-color" content="#75c9ee">
+<title>Psst... jangan buru-buru pergi! 🐬</title>
 <style>
-* {
-  box-sizing: border-box;
-}
-
+:root { --blue:#087eae; --deep:#075985; --glass:rgba(255,255,255,.78); }
+* { box-sizing:border-box; }
 body {
-  body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ffd6e7, #d8eaff);
-  overflow-x: hidden;
-  overflow-y: auto;
+  margin:0; min-height:100vh; overflow-x:hidden;
+  font-family: "Trebuchet MS", Arial, sans-serif; color:#174b69;
+  background:linear-gradient(180deg,#d9f5ff 0%,#8bd5f4 48%,#4aa8d7 100%);
 }
+.ocean { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+.bubble { position:absolute; bottom:-60px; width:12px;height:12px;border:2px solid rgba(255,255,255,.65);border-radius:50%;animation:rise linear infinite; }
+@keyframes rise { to { transform:translateY(-115vh) translateX(35px); opacity:0; } }
+.fish { position:absolute; font-size:clamp(24px,4vw,42px); opacity:.7; animation:swim 17s linear infinite; }
+@keyframes swim { from{transform:translateX(-15vw) scaleX(1)} to{transform:translateX(115vw) scaleX(1)} }
+.seaweed { position:fixed;bottom:-8px;font-size:48px;opacity:.45;z-index:0;pointer-events:none; }
+main { position:relative;z-index:1; width:min(92%,520px); margin:0 auto; padding:38px 0 70px; text-align:center; }
+.card {
+  background:var(--glass); border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 14px 35px rgba(16,91,132,.16); backdrop-filter:blur(8px);
+  border-radius:28px; padding:26px 23px; margin:18px 0;
+  animation:pop .65s ease both;
 }
-
-.kartu {
-  width: 90%;
-  max-width: 400px;
-  padding: 30px 22px;
-  background: white;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow: 0 10px 30px #0002;
-  animation: muncul 1s ease;
-  z-index: 2;
-}
-
-h1 {
-  color: #e75480;
-}
-
-.boneka {
-  font-size: 65px;
-  margin: 15px;
-  animation: goyang 2s infinite;
-}
-
-p {
-  color: #555;
-  line-height: 1.6;
-}
-
+@keyframes pop { from{opacity:0;transform:translateY(18px) scale(.97)} to{opacity:1;transform:none} }
+h1 { font-size:clamp(27px,7vw,38px); margin:8px 0 12px;color:#075985; }
+h2 { color:#075985;margin:8px 0 12px; }
+p { line-height:1.65; margin:10px 0; }
+.mascot { font-size:84px; line-height:1.2; filter:drop-shadow(0 5px 2px #398cb344); animation:bob 2.3s ease-in-out infinite; }
+@keyframes bob { 50%{transform:translateY(-9px) rotate(3deg)} }
 button {
-  background: #e75480;
-  color: white;
-  border: none;
-  padding: 14px 22px;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
+ border:0;border-radius:999px;padding:13px 22px;margin:7px;
+ background:linear-gradient(135deg,#168fbe,#0873a8);color:white;
+ font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 5px 12px #0873a844;
+ transition:transform .18s,filter .18s;
 }
-
-button:hover {
-  background: #c93668;
-  transform: scale(1.07);
-}
-
-#pesan {
-  display: none;
-  margin-top: 20px;
-  padding: 18px;
-  background: #fff0f5;
-  border-radius: 15px;
-  color: #9b3159;
-  line-height: 1.7;
-}
-
-.bunga {
-  position: fixed;
-  top: -30px;
-  font-size: 24px;
-  animation: jatuh 6s linear infinite;
-  z-index: 1;
-}
-
-@keyframes muncul {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes goyang {
-  0%, 100% { transform: rotate(-8deg); }
-  50% { transform: rotate(8deg); }
-}
-
-@keyframes jatuh {
-  to { transform: translateY(110vh) rotate(360deg); }
-}
+button:hover { transform:translateY(-2px) scale(1.03);filter:brightness(1.06); }
+button:focus-visible { outline:3px solid #075985;outline-offset:3px; }
+.secondary { background:#fff;color:#087eae;border:1px solid #9edcf2; }
+.hidden { display:none; }
+.tag { display:inline-block;background:#e8f8ff;border-radius:99px;padding:7px 13px;font-size:12px;font-weight:bold;color:#087eae; }
+.note { font-size:13px;color:#47758c; }
+#finalMessage { font-size:17px;font-weight:700;color:#075985; }
+footer { position:relative;z-index:1;text-align:center;color:#eafaff;font-size:12px;padding:0 15px 22px; }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation:none!important;scroll-behavior:auto!important; } }
 </style>
 </head>
-
 <body>
+<div class="ocean" aria-hidden="true" id="ocean"></div>
+<div class="seaweed" style="left:8px">🌿</div><div class="seaweed" style="right:8px">🌿</div>
+<main>
+  <div class="tag">A MINI UNDERWATER BREAK 🫧</div>
+  <section class="card" id="welcome">
+    <div class="mascot">🐬</div>
+    <h1>Psst... jangan buru-buru pergi!</h1>
+    <p>Ada pesan kecil dari dasar laut. Tenang, bukan tagihan lembur kok. 😂</p>
+    <button onclick="showPage('message')">Oke, aku penasaran 👀</button>
+  </section>
 
-<div class="kartu">
-  <h1>Hai! 👋🌷</h1>
+  <section class="card hidden" id="message">
+    <div class="mascot">🐢</div>
+    <h2>Halo! 🌼</h2>
+    <p>Kalau hari ini terasa ramai seperti pasar ikan, tarik napas dulu sebentar.</p>
+    <p>Kamu nggak harus menyelesaikan semuanya dalam satu detik. Kerjakan satu per satu, istirahat kalau perlu, dan jangan lupa minum air.</p>
+    <p><strong>Deadline boleh mengejar, tapi jangan sampai kamu lupa bahagia! 🤣</strong></p>
+    <button onclick="showPage('quiz')">Lanjut, Kapten! 🚢</button>
+  </section>
 
-  <div class="boneka">🐻🌻☕</div>
+  <section class="card hidden" id="quiz">
+    <div class="mascot">🐙</div>
+    <h2>Pertanyaan penting!</h2>
+    <p>Kalau pekerjaan mulai bikin kepala penuh, apa strategi terbaik?</p>
+    <button onclick="answer(true)">Atur napas, lalu cicil satu-satu 😌</button>
+    <button class="secondary" onclick="answer(false)">Menyamar jadi ubur-ubur 🤣</button>
+    <p class="note" id="answerText" aria-live="polite"></p>
+    <button id="nextBtn" class="hidden" onclick="showPage('finish')">Lihat pesan terakhir ✨</button>
+  </section>
 
-  <h3>Ada pesan buat kamu!</h3>
-
-  <p>
-    Gimana hari ini?<br>
-    Masih kuat menghadapi drama pekerjaan? 😂
-  </p>
-
-  <button onclick="bukaPesan()">
-    Buka Kejutan 🎁
-  </button>
-
-  <div id="pesan">
-    <strong>Hai, semoga harimu menyenangkan!</strong>
-    <br><br>
-    Tetap semangat! Kamu lebih kuat dari yang kamu kira. 🌻
-    <br><br>
-    Jangan terlalu banyak pikiran,
-    jangan lupa makan,
-    dan jangan lupa gajian!
-    <br><br>
-    Semangat kerjanya,  🤣
-    <br><br>
-    Salam dari binjai! ✨
-  </div>
-</div>
-
+  <section class="card hidden" id="finish">
+    <div class="mascot">🪼🌻</div>
+    <h2>Pesan dari laut terdalam</h2>
+    <p id="finalMessage">Semangat terus, Anita! Kamu sudah melakukan yang terbaik hari ini.</p>
+    <p>Jangan lupa makan, minum, istirahat, dan tetap jadi sumber energi positif di tempat kerja.</p>
+    <p><strong>Tetap semangat, ya! 🐬</strong></p>
+    <button onclick="replay()">Ulangi dari awal ↻</button>
+  </section>
+</main>
+<footer>Made with good vibes, bubbles & a little humor ✨</footer>
 <script>
-function bukaPesan() {
-  document.getElementById("pesan").style.display = "block";
-  document.querySelector("button").innerText = "Kejutan terbuka! 🎉";
+const pages = ["welcome","message","quiz","finish"];
+function showPage(id) {
+  pages.forEach(p => document.getElementById(p).classList.toggle("hidden", p !== id));
+  window.scrollTo({top:0, behavior:"smooth"});
 }
-
-const bunga = ["🌸", "🌷", "🌻", "✨"];
-
-setInterval(() => {
-  const elemen = document.createElement("div");
-  elemen.className = "bunga";
-  elemen.innerText = bunga[Math.floor(Math.random() * bunga.length)];
-  elemen.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(elemen);
-
-  setTimeout(() => elemen.remove(), 6000);
-}, 700);
+function answer(correct) {
+  const msg = document.getElementById("answerText");
+  msg.textContent = correct
+    ? "Betul! Strategi kapten yang bijak. ⭐"
+    : "Wkwkwk, boleh juga… tapi setelah tugasnya dicicil ya! 😂";
+  document.getElementById("nextBtn").classList.remove("hidden");
+}
+function replay() {
+  document.getElementById("answerText").textContent = "";
+  document.getElementById("nextBtn").classList.add("hidden");
+  showPage("welcome");
+}
+const ocean = document.getElementById("ocean");
+for(let i=0;i<22;i++){
+  const b=document.createElement("span"); b.className="bubble";
+  b.style.left=Math.random()*100+"%";
+  b.style.animationDuration=(7+Math.random()*9)+"s";
+  b.style.animationDelay=(-Math.random()*12)+"s";
+  b.style.width=b.style.height=(7+Math.random()*15)+"px";
+  ocean.appendChild(b);
+}
+["🐠","🐟","🪼","🐡"].forEach((emoji,i)=>{
+  const f=document.createElement("span");f.className="fish";f.textContent=emoji;
+  f.style.top=(12+i*19)+"%";f.style.animationDelay=(-i*4)+"s";
+  ocean.appendChild(f);
+});
 </script>
-
 </body>
 </html>
