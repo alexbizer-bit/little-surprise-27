@@ -47,7 +47,53 @@ button:focus-visible { outline:3px solid #075985;outline-offset:3px; }
 #finalMessage { font-size:17px;font-weight:700;color:#075985; }
 footer { position:relative;z-index:1;text-align:center;color:#eafaff;font-size:12px;padding:0 15px 22px; }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation:none!important;scroll-behavior:auto!important; } }
-</style>
+/* ANIMASI SURAT RAHASIA */
+
+.secret-card {
+  animation: secretReveal 1s ease both;
+}
+
+@keyframes secretReveal {
+  from {
+    opacity: 0;
+    transform: scale(.75) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.secret-envelope {
+  font-size: 85px;
+  animation: envelopeFloat 2s ease-in-out infinite;
+}
+
+@keyframes envelopeFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.secret-message {
+  animation: textAppear 2s ease both;
+  animation-delay: .6s;
+}
+
+@keyframes textAppear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sparkle {
+  display: inline-block;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  50% { transform: scale(1.4) rotate(20deg); }
+}
+
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation:none!important;scroll-behavior:auto!important; } }</style>
 </head>
 <body>
 <div class="ocean" aria-hidden="true" id="ocean"></div>
@@ -81,13 +127,25 @@ footer { position:relative;z-index:1;text-align:center;color:#eafaff;font-size:1
   </section>
 
   <section class="card hidden" id="finish">
-    <div class="mascot">🪼🌻</div>
-    <h2>Pesan dari laut terdalam</h2>
-    <p id="finalMessage">Semangat terus,! Kamu sudah melakukan yang terbaik hari ini.</p>
-    <p>Jangan lupa makan, minum, istirahat, dan tetap jadi sumber energi positif di tempat kerja😬.</p>
-    <p><strong>Tetap semangat, OY ! 🐬</strong></p>
-    <button onclick="replay()">Ulangi dari awal ↻</button>
-  </section>
+  <div class="mascot">🪼🌻</div>
+  <h2>Pesan dari laut terdalam</h2>
+  <p id="finalMessage">Semangat terus! Kamu sudah melakukan yang terbaik hari ini.</p>
+  <p>Jangan lupa makan, minum, istirahat, dan tetap jadi sumber energi positif di tempat kerja😬.</p>
+  <p><strong>Tetap semangat, OY! 🐬</strong></p>
+
+  <button onclick="replay()">Ulangi dari awal ↻</button>
+  <button onclick="showPage('secret')">Eh, satu lagi... 💌</button>
+</section>
+
+<section class="card hidden secret-card" id="secret">
+  <div class="secret-envelope">💌</div>
+  <h2 class="secret-message">SURAT RAHASIA!</h2>
+  <p class="secret-message">✨ Ada satu hal yang mau disampaikan...</p>
+  <h2 class="secret-message">Kamu cantik hari ini wkwkwk 🤣🌷</h2>
+  <div class="sparkle">✨ 🫧 💗 🫧 ✨</div>
+  <p class="secret-message">Jangan lupa senyum, ya! 🌻</p>
+  <button onclick="replay()">Kembali ke awal ↻</button>
+</section>
 
   <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;">
     
@@ -105,7 +163,7 @@ footer { position:relative;z-index:1;text-align:center;color:#eafaff;font-size:1
 </main>
 <footer>Made with good vibes, bubbles & a little humor ✨</footer>
 <script>
-const pages = ["welcome","message","quiz","finish"];
+const pages = ["welcome","message","quiz","finish","secret"];
 function showPage(id) {
   pages.forEach(p => document.getElementById(p).classList.toggle("hidden", p !== id));
   window.scrollTo({top:0, behavior:"smooth"});
